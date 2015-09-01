@@ -1,152 +1,153 @@
 var React = require('react');
 
-//var ContentToggle = React.createClass({
-  //getInitialState () {
-    //return {
-      //isOpen: false
-    //};
-  //},
+// var ContentToggle = React.createClass({
+//   getInitialState () {
+//     return {
+//       isOpen: false
+//     };
+//   },
 
-  //handleClick () {
-    //this.setState({ isOpen: !this.state.isOpen }, () => {
-      //if (this.props.onToggle) this.props.onToggle(this.state.isOpen);
-    //});
-  //},
+//   handleClick () {
+//     this.setState({ isOpen: !this.state.isOpen }, () => {
+//       if (this.props.onToggle) this.props.onToggle(this.state.isOpen);
+//     });
+//   },
 
-  //render () {
-    //var summaryClassName = "ContentToggle__Summary";
-    //if (this.state.isOpen)
-      //summaryClassName += " ContentToggle__Summary--is-open";
-    //return (
-      //<div {...this.props} className="ContentToggle">
-        //<button onClick={this.handleClick} className={summaryClassName}>
-          //{this.props.summary}
-        //</button>
-        //<div className="ContentToggle__Details">
-          //{this.state.isOpen && this.props.children}
-        //</div>
-      //</div>
-    //);
-  //}
-//});
+//   render () {
+//     var summaryClassName = "ContentToggle__Summary";
+//     if (this.state.isOpen)
+//       summaryClassName += " ContentToggle__Summary--is-open";
+//     return (
+//       <div {...this.props} className="ContentToggle">
+//         <button onClick={this.handleClick} className={summaryClassName}>
+//           {this.props.summary}
+//         </button>
+//         <div className="ContentToggle__Details">
+//           {this.state.isOpen && this.props.children}
+//         </div>
+//       </div>
+//     );
+//   }
+// });
 
-//var App = React.createClass({
-  //getInitialState () {
-    //return {
-      //tacos: [
-        //{ name: 'Carnitas', src: 'tacos/carnitas.png' },
-        //{ name: 'Pollo', src: 'tacos/pollo.png' },
-        //{ name: 'Asada', src: 'tacos/asada.png' },
-      //]
-    //};
-  //},
+// var App = React.createClass({
+//   getInitialState () {
+//     return {
+//       tacos: [
+//         { name: 'Carnitas', src: 'tacos/carnitas.png' },
+//         { name: 'Pollo', src: 'tacos/pollo.png' },
+//         { name: 'Asada', src: 'tacos/asada.png' },
+//       ]
+//     };
+//   },
 
-  //render () {
-    //return (
-      //<div>
-        //<div>
-          //{this.state.tacos.map((taco) => (
-            //<ContentToggle style={{width: 300}} key={taco.name} summary={taco.name}>
-              //<div style={{height: 200, background: `url(${taco.src})`, backgroundSize: 'cover'}}/>
-            //</ContentToggle>
-          //))}
-        //</div>
-      //</div>
-    //);
-  //}
-//});
+//   render () {
+//     return (
+//       <div>
+//         <div>
+//           {this.state.tacos.map((taco) => (
+//             <ContentToggle style={{width: 300}} key={taco.name} summary={taco.name}>
+//               <div style={{height: 200, background: `url(${taco.src})`, backgroundSize: 'cover'}}/>
+//             </ContentToggle>
+//           ))}
+//         </div>
+//       </div>
+//     );
+//   }
+// });
 
-//React.render(<App/>, document.getElementById('app'));
+// React.render(<App/>, document.getElementById('app'));
 
 ////////////////////////////////////////////////////////////////////////////////
 // But what about when we add this feature?
 // <button>Toggle All</button>
 
-//var ContentToggle = React.createClass({
-  //getInitialState () {
-    //return {
-      //isOpen: this.props.isOpen
-    //};
-  //},
+// var ContentToggle = React.createClass({
+//   getInitialState () {
+//     return {
+//       isOpen: this.props.isOpen
+//     };
+//   },
 
-  //getDefaultProps () {
-    //return {
-      //isOpen: false
-    //};
-  //},
+//   getDefaultProps () {
+//     return {
+//       isOpen: false
+//     };
+//   },
 
-  //componentWillReceiveProps (newProps) {
-    //if (newProps.isOpen != null)
-      //this.setState({ isOpen: newProps.isOpen });
-  //},
+//   componentWillReceiveProps (newProps) {
+//     if (newProps.isOpen != null)
+//       this.setState({ isOpen: newProps.isOpen });
+//   },
 
-  //handleClick () {
-    //this.setState({ isOpen: !this.state.isOpen }, () => {
-      //if (this.props.onToggle) this.props.onToggle(this.state.isOpen);
-    //});
-  //},
+//   handleClick () {
+//     this.setState({ isOpen: !this.state.isOpen }, () => {
+//       if (this.props.onToggle) this.props.onToggle(this.state.isOpen);
+//     });
+//   },
 
-  //render () {
-    //var summaryClassName = "ContentToggle__Summary";
-    //if (this.state.isOpen)
-      //summaryClassName += " ContentToggle__Summary--is-open";
-    //return (
-      //<div {...this.props} className="ContentToggle">
-        //<button onClick={this.handleClick} className={summaryClassName}>
-          //{this.props.summary}
-        //</button>
-        //<div className="ContentToggle__Details">
-          //{this.state.isOpen && this.props.children}
-        //</div>
-      //</div>
-    //);
-  //}
-//});
+//   render () {
+//     var summaryClassName = "ContentToggle__Summary";
+//     if (this.state.isOpen)
+//       summaryClassName += " ContentToggle__Summary--is-open";
+//     return (
+//       <div {...this.props} className="ContentToggle">
+//         <button onClick={this.handleClick} className={summaryClassName}>
+//           {this.props.summary}
+//         </button>
+//         <div className="ContentToggle__Details">
+//           {this.state.isOpen && this.props.children}
+//         </div>
+//       </div>
+//     );
+//   }
+// });
 
-//var App = React.createClass({
-  //getInitialState () {
-    //return {
-      //toggleAll: false,
-      //tacos: [
-        //{ name: 'Carnitas', src: 'tacos/carnitas.png' },
-        //{ name: 'Pollo', src: 'tacos/pollo.png' },
-        //{ name: 'Asada', src: 'tacos/asada.png' },
-      //]
-    //};
-  //},
+// var App = React.createClass({
+//   getInitialState () {
+//     return {
+//       toggleAll: false,
+//       tacos: [
+//         { name: 'Carnitas', src: 'tacos/carnitas.png' },
+//         { name: 'Pollo', src: 'tacos/pollo.png' },
+//         { name: 'Asada', src: 'tacos/asada.png' },
+//       ]
+//     };
+//   },
 
-  //toggleAll () {
-    //this.setState({
-      //toggleAll: !this.state.toggleAll
-    //});
-  //},
+//   toggleAll () {
+//     this.setState({
+//       toggleAll: !this.state.toggleAll
+//     });
+//   },
 
-  //render () {
-    //return (
-      //<div>
-        //<button onClick={this.toggleAll}>Toggle All</button>
-        //<div>
-          //{this.state.tacos.map(taco => (
-            //<ContentToggle
-              //style={{width: 300}}
-              //isOpen={this.state.toggleAll}
-              //key={taco.name}
-              //summary={taco.name}
-            //>
-            //<div style={{
-              //height: 200,
-              //background: `url(${taco.src})`,
-              //backgroundSize: 'cover'
-            //}}/>
-            //</ContentToggle>
-          //))}
-        //</div>
-      //</div>
-    //);
-  //}
-//});
+//   render () {
+//     return (
+//       <div>
+//         <button onClick={this.toggleAll}>Toggle All</button>
+//         // <pre>{JSON.stringify(this.state, null, 2)}</pre>
+//         <div>
+//           {this.state.tacos.map(taco => (
+//             <ContentToggle
+//               style={{width: 300}}
+//               isOpen={this.state.toggleAll}
+//               key={taco.name}
+//               summary={taco.name}
+//             >
+//             <div style={{
+//               height: 200,
+//               background: `url(${taco.src})`,
+//               backgroundSize: 'cover'
+//             }}/>
+//             </ContentToggle>
+//           ))}
+//         </div>
+//       </div>
+//     );
+//   }
+// });
 
-//React.render(<App/>, document.getElementById('app'));
+// React.render(<App/>, document.getElementById('app'));
 
 ////////////////////////////////////////////////////////////////////////////////
 // This is cool, until we screw up the state by clicking toggle all, then
@@ -157,224 +158,227 @@ var React = require('react');
 // - add `isOpen` state to each taco
 // - click toggleAll, stuff resets to the initial
 // - need to synchronize with onToggle
-// - but not toggleAll isn't doing anything
+// - but now toggleAll isn't doing anything
 
-//var ContentToggle = React.createClass({
-  //getInitialState () {
-    //return {
-      //isOpen: this.props.isOpen
-    //};
-  //},
+// var ContentToggle = React.createClass({
+//   getInitialState () {
+//     return {
+//       isOpen: this.props.isOpen
+//     };
+//   },
 
-  //getDefaultProps () {
-    //return {
-      //isOpen: false
-    //};
-  //},
+//   getDefaultProps () {
+//     return {
+//       isOpen: false
+//     };
+//   },
 
-  //componentWillReceiveProps (newProps) {
-    //if (newProps.isOpen != null)
-      //this.setState({ isOpen: newProps.isOpen });
-  //},
+//   componentWillReceiveProps (newProps) {
+//     if (newProps.isOpen != null)
+//       this.setState({ isOpen: newProps.isOpen });
+//   },
 
-  //handleClick () {
-    //this.setState({ isOpen: !this.state.isOpen }, () => {
-      //if (this.props.onToggle) this.props.onToggle(this.state.isOpen);
-    //});
-  //},
+//   handleClick () {
+//     this.setState({ isOpen: !this.state.isOpen }, () => {
+//       if (this.props.onToggle) this.props.onToggle(this.state.isOpen);
+//     });
+//   },
 
-  //render () {
-    //var summaryClassName = "ContentToggle__Summary";
-    //if (this.state.isOpen)
-      //summaryClassName += " ContentToggle__Summary--is-open";
-    //return (
-      //<div {...this.props} className="ContentToggle">
-        //<button onClick={this.handleClick} className={summaryClassName}>
-          //{this.props.summary}
-        //</button>
-        //<div className="ContentToggle__Details">
-          //{this.state.isOpen && this.props.children}
-        //</div>
-      //</div>
-    //);
-  //}
-//});
+//   render () {
+//     var summaryClassName = "ContentToggle__Summary";
+//     if (this.state.isOpen)
+//       summaryClassName += " ContentToggle__Summary--is-open";
+//     return (
+//       <div {...this.props} className="ContentToggle">
+//         <button onClick={this.handleClick} className={summaryClassName}>
+//           {this.props.summary}
+//         </button>
+//         <div className="ContentToggle__Details">
+//           {this.state.isOpen && this.props.children}
+//         </div>
+//       </div>
+//     );
+//   }
+// });
 
-//var App = React.createClass({
-  //getInitialState () {
-    //return {
-      //toggleAll: false,
-      //tacos: [
-        //{ name: 'Carnitas', src: 'tacos/carnitas.png', isOpen: true },
-        //{ name: 'Pollo', src: 'tacos/pollo.png', isOpen: false },
-        //{ name: 'Asada', src: 'tacos/asada.png', isOpen: true },
-      //]
-    //};
-  //},
+// var App = React.createClass({
+//   getInitialState () {
+//     return {
+//       toggleAll: false,
+//       tacos: [
+//         { name: 'Carnitas', src: 'tacos/carnitas.png', isOpen: true },
+//         { name: 'Pollo', src: 'tacos/pollo.png', isOpen: false },
+//         { name: 'Asada', src: 'tacos/asada.png', isOpen: true },
+//       ]
+//     };
+//   },
 
-  //toggleAll () {
-    //this.setState({
-      //toggleAll: !this.state.toggleAll
-    //});
-  //},
+//   toggleAll () {
+//     this.setState({
+//       toggleAll: !this.state.toggleAll
+//     });
+//   },
 
-  //handleToggle (toggledTaco, isOpen) {
-    //var newTacos = this.state.tacos.map((taco) => {
-      //if (toggledTaco === taco)
-        //toggledTaco.isOpen = isOpen;
-      //return taco;
-    //});
-    //this.setState({ tacos: newTacos });
-  //},
+//   handleToggle (toggledTaco, isOpen) {
+//     var newTacos = this.state.tacos.map((taco) => {
+//       if (toggledTaco === taco)
+//         toggledTaco.isOpen = isOpen;
+//       return taco;
+//     });
+//     this.setState({ tacos: newTacos });
+//   },
 
-  //render () {
-    //return (
-      //<div>
-        //<button onClick={this.toggleAll}>Toggle All</button>
-        //<div>
-          //{this.state.tacos.map(taco => (
-            //<ContentToggle
-              //style={{width: 300}}
-              //onToggle={this.handleToggle.bind(this, taco)}
-              //isOpen={taco.isOpen}
-              //key={taco.name}
-              //summary={taco.name}
-            //>
-            //<div style={{
-              //height: 200,
-              //background: `url(${taco.src})`,
-              //backgroundSize: 'cover'
-            //}}/>
-            //</ContentToggle>
-          //))}
-        //</div>
-      //</div>
-    //);
-  //}
-//});
+//   render () {
+//     return (
+//       <div>
+//         <button onClick={this.toggleAll}>Toggle All</button>
+//         <div>
+//           {this.state.tacos.map(taco => (
+//             <ContentToggle
+//               style={{width: 300}}
+//               onToggle={(isOpen) => this.handleToggle(taco, isOpen)}
+//               isOpen={taco.isOpen}
+//               key={taco.name}
+//               summary={taco.name}
+//             >
+//             <div style={{
+//               height: 200,
+//               background: `url(${taco.src})`,
+//               backgroundSize: 'cover'
+//             }}/>
+//             </ContentToggle>
+//           ))}
+//         </div>
+//       </div>
+//     );
+//   }
+// });
 
-//React.render(<App/>, document.getElementById('app'));
+// React.render(<App/>, document.getElementById('app'));
 
 ////////////////////////////////////////////////////////////////////////////////
 // Now we're ready to make toggleAll smarter by inspecting the individual
 // toggler states to decide what to do next
 
-//var ContentToggle = React.createClass({
-  //getInitialState () {
-    //return {
-      //isOpen: this.props.isOpen
-    //};
-  //},
+// var ContentToggle = React.createClass({
+//   getInitialState () {
+//     return {
+//       isOpen: this.props.isOpen
+//     };
+//   },
 
-  //getDefaultProps () {
-    //return {
-      //isOpen: false
-    //};
-  //},
+//   getDefaultProps () {
+//     return {
+//       isOpen: false
+//     };
+//   },
 
-  //componentWillReceiveProps (newProps) {
-    //if (newProps.isOpen != null)
-      //this.setState({ isOpen: newProps.isOpen });
-  //},
+//   componentWillReceiveProps (newProps) {
+//     if (newProps.isOpen != null)
+//       this.setState({ isOpen: newProps.isOpen });
+//   },
 
-  //handleClick () {
-    //this.setState({ isOpen: !this.state.isOpen }, () => {
-      //if (this.props.onToggle) this.props.onToggle(this.state.isOpen);
-    //});
-  //},
+//   handleClick () {
+//     this.setState({ isOpen: !this.state.isOpen }, () => {
+//       if (this.props.onToggle) this.props.onToggle(this.state.isOpen);
+//     });
+//   },
 
-  //render () {
-    //var summaryClassName = "ContentToggle__Summary";
-    //if (this.state.isOpen)
-      //summaryClassName += " ContentToggle__Summary--is-open";
-    //return (
-      //<div {...this.props} className="ContentToggle">
-        //<button onClick={this.handleClick} className={summaryClassName}>
-          //{this.props.summary}
-        //</button>
-        //<div className="ContentToggle__Details">
-          //{this.state.isOpen && this.props.children}
-        //</div>
-      //</div>
-    //);
-  //}
-//});
+//   render () {
+//     var summaryClassName = "ContentToggle__Summary";
+//     if (this.state.isOpen)
+//       summaryClassName += " ContentToggle__Summary--is-open";
+//     return (
+//       <div {...this.props} className="ContentToggle">
+//         <button onClick={this.handleClick} className={summaryClassName}>
+//           {this.props.summary}
+//         </button>
+//         <div className="ContentToggle__Details">
+//           {this.state.isOpen && this.props.children}
+//         </div>
+//       </div>
+//     );
+//   }
+// });
 
-//var App = React.createClass({
-  //getInitialState () {
-    //return {
-      //toggleAll: false,
-      //tacos: [
-        //{ name: 'Carnitas', src: 'tacos/carnitas.png', isOpen: true },
-        //{ name: 'Pollo', src: 'tacos/pollo.png', isOpen: false },
-        //{ name: 'Asada', src: 'tacos/asada.png', isOpen: true },
-      //]
-    //};
-  //},
+// var App = React.createClass({
+//   getInitialState () {
+//     return {
+//       toggleAll: false,
+//       tacos: [
+//         { name: 'Carnitas', src: 'tacos/carnitas.png', isOpen: true },
+//         { name: 'Pollo', src: 'tacos/pollo.png', isOpen: false },
+//         { name: 'Asada', src: 'tacos/asada.png', isOpen: true },
+//       ]
+//     };
+//   },
 
-  //toggleAll () {
-    //var allOpen = this.state.tacos.reduce((allOpen, taco) => {
-      //return allOpen === false ? allOpen : taco.isOpen;
-    //}, true);
-    //var allClosed = this.state.tacos.reduce((allClosed, taco) => {
-      //return allClosed === false ? allClosed : !taco.isOpen;
-    //}, true);
-    //var newToggleAll;
-    //if (allOpen)
-      //newToggleAll = false;
-    //else if (allClosed)
-      //newToggleAll = true;
-    //else
-      //newToggleAll = !this.state.toggleAll;
-    //var newTacos = this.state.tacos.map((taco) => {
-      //taco.isOpen = newToggleAll;
-      //return taco;
-    //});
-    //this.setState({
-      //tacos: newTacos,
-      //toggleAll: newToggleAll
-    //});
-  //},
+//   toggleAll () {
+//     var allOpen = this.state.tacos.reduce((allOpen, taco) => {
+//       return allOpen === false ? allOpen : taco.isOpen;
+//     }, true);
+//     var allClosed = this.state.tacos.reduce((allClosed, taco) => {
+//       return allClosed === false ? allClosed : !taco.isOpen;
+//     }, true);
 
-  //handleToggle (toggledTaco, isOpen) {
-    //var newTacos = this.state.tacos.map((taco) => {
-      //if (toggledTaco === taco)
-        //toggledTaco.isOpen = isOpen;
-      //return taco;
-    //});
-    //this.setState({ tacos: newTacos });
-  //},
+//     var newToggleAll;
+//     if (allOpen)
+//       newToggleAll = false;
+//     else if (allClosed)
+//       newToggleAll = true;
+//     else
+//       newToggleAll = !this.state.toggleAll;
 
-  //render () {
-    //return (
-      //<div>
-        //<button onClick={this.toggleAll}>Toggle All</button>
-        //<div>
-          //{this.state.tacos.map(taco => (
-            //<ContentToggle
-              //style={{width: 300}}
-              //onToggle={this.handleToggle.bind(this, taco)}
-              //isOpen={taco.isOpen}
-              //key={taco.name}
-              //summary={taco.name}
-            //>
-            //<div style={{
-              //height: 200,
-              //background: `url(${taco.src})`,
-              //backgroundSize: 'cover'
-            //}}/>
-            //</ContentToggle>
-          //))}
-        //</div>
-      //</div>
-    //);
-  //}
-//});
+//     var newTacos = this.state.tacos.map((taco) => {
+//       taco.isOpen = newToggleAll;
+//       return taco;
+//     });
 
-//React.render(<App/>, document.getElementById('app'));
+//     this.setState({
+//       tacos: newTacos,
+//       toggleAll: newToggleAll
+//     });
+//   },
+
+//   handleToggle (toggledTaco, isOpen) {
+//     var newTacos = this.state.tacos.map((taco) => {
+//       if (toggledTaco === taco)
+//         toggledTaco.isOpen = isOpen;
+//       return taco;
+//     });
+//     this.setState({ tacos: newTacos });
+//   },
+
+//   render () {
+//     return (
+//       <div>
+//         <button onClick={this.toggleAll}>Toggle All</button>
+//         <div>
+//           {this.state.tacos.map(taco => (
+//             <ContentToggle
+//               style={{width: 300}}
+//               onToggle={this.handleToggle.bind(this, taco)}
+//               isOpen={taco.isOpen}
+//               key={taco.name}
+//               summary={taco.name}
+//             >
+//             <div style={{
+//               height: 200,
+//               background: `url(${taco.src})`,
+//               backgroundSize: 'cover'
+//             }}/>
+//             </ContentToggle>
+//           ))}
+//         </div>
+//       </div>
+//     );
+//   }
+// });
+
+// React.render(<App/>, document.getElementById('app'));
 
 ////////////////////////////////////////////////////////////////////////////////
-// Our state is no fully synchronized, but do we even need state in
+// Our state is not fully synchronized, but do we even need state in
 // ContentToggle anymore?
 
 //var ContentToggle = React.createClass({
@@ -504,8 +508,7 @@ var StatefulContentToggle = React.createClass({
     return <ContentToggle
       {...this.props}
       {...this.state}
-      onToggle={this.handleToggle}
-    />;
+      onToggle={this.handleToggle}/>;
   }
 });
 

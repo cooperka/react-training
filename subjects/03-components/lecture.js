@@ -5,40 +5,40 @@ var React = require('react');
 // a setState function that we can use to update state and automatically update
 // the page any time the state changes.
 
-var isOpen = false;
+// var isOpen = false;
 
-function handleClick() {
-  isOpen = !isOpen;
-  updateThePage();
-}
+// function handleClick() {
+//   isOpen = !isOpen;
+//   updateThePage();
+// }
 
-function render() {
-  var summaryClassName = 'ContentToggle__Summary';
-  if (isOpen)
-    summaryClassName += ' ContentToggle__Summary--is-open';
+// function render() {
+//   var summaryClassName = 'ContentToggle__Summary';
+//   if (isOpen)
+//     summaryClassName += ' ContentToggle__Summary--is-open';
 
-  return (
-    <div className="ContentToggle">
-      <button onClick={handleClick} className={summaryClassName}>
-        Tacos
-      </button>
-      {isOpen && (
-        <div className="ContentToggle__Details">
-          <p>
-            A taco is a traditional Mexican dish composed of a corn or wheat
-            tortilla folded or rolled around a filling.
-          </p>
-        </div>
-      )}
-    </div>
-  );
-}
+//   return (
+//     <div className="ContentToggle">
+//       <button onClick={handleClick} className={summaryClassName}>
+//         Tacos
+//       </button>
+//       {isOpen && (
+//         <div className="ContentToggle__Details">
+//           <p>
+//             A taco is a traditional Mexican dish composed of a corn or wheat
+//             tortilla folded or rolled around a filling.
+//           </p>
+//         </div>
+//       )}
+//     </div>
+//   );
+// }
 
-function updateThePage() {
-  React.render(render(), document.getElementById('app'));
-}
+// function updateThePage() {
+//   React.render(render(), document.getElementById('app'));
+// }
 
-updateThePage();
+// updateThePage();
 
 
 
@@ -88,40 +88,51 @@ updateThePage();
 // React gives us setState and automatically re-renders as the state changes
 
 // var ContentToggle = React.createClass({
-//
+
 //   getInitialState() {
 //     return {
 //       isOpen: false
 //     };
 //   },
-//
+
 //   handleClick() {
 //     this.setState({
 //       isOpen: !this.state.isOpen
 //     });
 //   },
-//
+
 //   render() {
 //     return (
 //       <div className="ContentToggle">
 //         <button onClick={this.handleClick} className="ContentToggle__Summary">
-//           Tacos
+//           {this.props.title}
 //         </button>
 //         <div className="ContentToggle__Details">
 //           {this.state.isOpen && (
-//             <p>
-//               A taco is a traditional Mexican dish composed of a corn or wheat
-//               tortilla folded or rolled around a filling.
-//             </p>
+//             this.props.children
 //           )}
 //         </div>
 //       </div>
 //     );
 //   }
-//
+
 // });
-//
-// React.render(<ContentToggle/>, document.getElementById('app'));
+
+// React.render((
+//   <div>
+//     <ContentToggle title="Tacos">
+//       <p>
+//         A taco is a traditional Mexican dish composed of a corn or wheat
+//         tortilla folded or rolled around a filling.
+//       </p>
+//     </ContentToggle>
+//     <ContentToggle title="Burritos">
+//       <p>
+//         A burrito...
+//       </p>
+//     </ContentToggle>
+//   </div>
+// ), document.getElementById('app'));
 
 ////////////////////////////////////////////////////////////////////////////////
 // Wrap <ContentToggle> in an <App> that tracks the # of times it has been
@@ -130,26 +141,28 @@ updateThePage();
 // Real use case might be analytics
 
 // var ContentToggle = React.createClass({
-//
+
+//   // Type-checking -- yay!!
 //   propTypes: {
+//     title: React.PropTypes.string.isRequired,
 //     onToggle: React.PropTypes.func
 //   },
-//
+
 //   getInitialState() {
 //     return {
 //       isOpen: false
 //     };
 //   },
-//
+
 //   handleClick() {
 //     this.setState({
 //       isOpen: !this.state.isOpen
 //     });
-//
+
 //     if (this.props.onToggle)
 //       this.props.onToggle();
 //   },
-//
+
 //   render() {
 //     return (
 //       <div className="ContentToggle">
@@ -167,23 +180,23 @@ updateThePage();
 //       </div>
 //     );
 //   }
-//
+
 // });
-//
+
 // var App = React.createClass({
-//
+
 //   getInitialState() {
 //     return {
 //       numToggles: 0
 //     };
 //   },
-//
+
 //   handleToggle() {
 //     this.setState({
 //       numToggles: this.state.numToggles + 1
 //     });
 //   },
-//
+
 //   render() {
 //     return (
 //       <div>
@@ -192,9 +205,9 @@ updateThePage();
 //       </div>
 //     );
 //   }
-//
+
 // });
-//
+
 // React.render(<App/>, document.getElementById('app'));
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -289,13 +302,13 @@ updateThePage();
 // arguments to the function. They look like element attributes in JSX
 
 // var md5 = require('md5');
-//
+
 // var GRAVATAR_URL = 'http://gravatar.com/avatar';
 // var USERS = [
 //   { name: 'Ryan Florence', email: 'rpflorence@gmail.com' },
 //   { name: 'Michael Jackson', email: 'mjijackson@gmail.com' }
 // ];
-//
+
 // var App = React.createClass({
 //   render () {
 //     return (
@@ -312,25 +325,24 @@ updateThePage();
 //     );
 //   }
 // });
-//
+
 // React.render(<App/>, document.getElementById('app'));
 
 ////////////////////////////////////////////////////////////////////////////////
 // We can refactor to get a <Gravatar> component that takes a user's email as
 // a prop and automatically generates the <img src> and a size prop
 
+// // Never need to type PropTypes again!
+// var { string, number } = React.PropTypes;
+
+// // This can all go away into a separate file!
 // var md5 = require('md5');
-//
 // var GRAVATAR_URL = 'http://gravatar.com/avatar';
-// var USERS = [
-//   { name: 'Ryan Florence', email: 'rpflorence@gmail.com' },
-//   { name: 'Michael Jackson', email: 'mjijackson@gmail.com' }
-// ];
-//
+
 // var Gravatar = React.createClass({
 //   propTypes: {
-//     email: React.PropTypes.string.isRequired,
-//     size: React.PropTypes.number.isRequired
+//     email: string.isRequired,
+//     size: number
 //   },
 //   getDefaultProps() {
 //     return {
@@ -343,7 +355,12 @@ updateThePage();
 //     );
 //   }
 // });
-//
+
+// var USERS = [
+//   { name: 'Ryan Florence', email: 'rpflorence@gmail.com' },
+//   { name: 'Michael Jackson', email: 'mjijackson@gmail.com' }
+// ];
+
 // var App = React.createClass({
 //   render () {
 //     return (
@@ -360,7 +377,7 @@ updateThePage();
 //     );
 //   }
 // });
-//
+
 // React.render(<App/>, document.getElementById('app'));
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -368,20 +385,20 @@ updateThePage();
 
 // var md5 = require('md5');
 // var isEmail = require('./utils/isEmail');
-//
+
 // var GRAVATAR_URL = 'http://gravatar.com/avatar';
 // var USERS = [
 //   { name: 'Ryan Florence', email: 'rpflorence@gmail.com' },
 //   { name: 'Michael Jackson', email: 'mjijackson@gmail.com' }
 // ];
-//
+
 // var Gravatar = React.createClass({
 //   propTypes: {
 //     email: function (props, propName, componentName) {
 //       var value = props[propName];
-//
+
 //       if (value !== undefined && !isEmail(value))
-//         return new Error(`Invalid prop "${propName}" given to "${componentName}", "${value}" does not look like an email address"`);
+//         return new Error(`Invalid prop "${propName}" given to "${componentName}", "${value}" does not look like an email address`);
 //     },
 //     size: React.PropTypes.number.isRequired
 //   },
@@ -396,7 +413,7 @@ updateThePage();
 //     );
 //   }
 // });
-//
+
 // var App = React.createClass({
 //   render () {
 //     return (
@@ -413,13 +430,14 @@ updateThePage();
 //     );
 //   }
 // });
-//
+
 // React.render(<App/>, document.getElementById('app'));
 
 ////////////////////////////////////////////////////////////////////////////////
 // Eventually you'll probably end up creating a bunch of custom prop types for
 // common types of objects you pass around in your app
 
+// <<<<<<< Updated upstream
 // var PropTypes = {
 //
 //   email: function (props, propName, componentName, location, isRequired) {
@@ -482,3 +500,67 @@ updateThePage();
 // });
 //
 // React.render(<App/>, document.getElementById('app'));
+// =======
+var PropTypes = {
+
+  email: function (props, propName, componentName, location, isRequired) {
+    var value = props[propName];
+
+    if (isRequired && value === undefined)
+      return new Error(`Required prop "${propName}" was not specified in "${componentName}".`);
+
+    if (value !== undefined && !isEmail(value))
+      return new Error(`Invalid prop "${propName}" given to "${componentName}", "${value}" does not look like an email address`);
+  }
+
+};
+
+PropTypes.email.isRequired = function (...args) {
+  return PropTypes.email.apply(PropTypes.email, args.concat([ true ]));
+};
+
+var MD5 = require('md5');
+var isEmail = require('./utils/isEmail');
+
+var GRAVATAR_URL = 'http://gravatar.com/avatar';
+var USERS = [
+  { name: 'Ryan Florence', email: 'rpflorence@gmail.com' },
+  { name: 'Michael Jackson', email: 'mjijackson@gmail.com' }
+];
+
+var Gravatar = React.createClass({
+  propTypes: {
+    email: PropTypes.email.isRequired,
+    size: React.PropTypes.number.isRequired
+  },
+  getDefaultProps() {
+    return {
+      size: 80
+    };
+  },
+  render() {
+    return (
+      <img src={GRAVATAR_URL + '/' + MD5(this.props.email) + '?s=' + this.props.size}/>
+    );
+  }
+});
+
+var App = React.createClass({
+  render () {
+    return (
+      <div>
+        <h1>Users</h1>
+        <ul>
+        {USERS.map(user => (
+          <li key={user.email}>
+            <Gravatar email={user.email}/> {user.name}
+          </li>
+        ))}
+        </ul>
+      </div>
+    );
+  }
+});
+
+React.render(<App/>, document.getElementById('app'));
+// >>>>>>> Stashed changes

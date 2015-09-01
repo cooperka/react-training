@@ -12,34 +12,28 @@
 //
 // Already done?
 //
-// Now put state back into the tabs (so that they can be used w/o a the owner
-// being required to manage state) and synchronize the state between the App
-// and Tabs.
+// Make a stateful component around it.
 ////////////////////////////////////////////////////////////////////////////////
 
 var React = require('react');
 var styles = require('./lib/styles');
 var data = require('./lib/data');
 
-var Tabs = React.createClass({
+var StatelessTabs = React.createClass({
 
   propTypes: {
-    data: React.PropTypes.array.isRequired
-  },
-
-  getInitialState() {
-    return {
-      activeTabIndex: 0
-    };
+    data: React.PropTypes.array.isRequired,
+    activeTabIndex: React.PropTypes.number.isRequired,
+    onActivateTab: React.PropTypes.func.isRequired
   },
 
   handleTabClick(activeTabIndex) {
-    this.setState({ activeTabIndex });
+    this.props.onActivateTab(activeTabIndex);
   },
 
   renderTabs() {
     return this.props.data.map((tab, index) => {
-      var style = this.state.activeTabIndex === index ?
+      var style = this.props.activeTabIndex === index ?
         styles.activeTab : styles.tab;
       var clickHandler = this.handleTabClick.bind(this, index);
       return (
@@ -51,7 +45,7 @@ var Tabs = React.createClass({
   },
 
   renderPanel() {
-    var tab = this.props.data[this.state.activeTabIndex];
+    var tab = this.props.data[this.props.activeTabIndex];
     return (
       <div>
         <p>{tab.description}</p>
@@ -76,11 +70,29 @@ var Tabs = React.createClass({
 
 var App = React.createClass({
 
+  propTypes: {
+    tabs: React.PropTypes.array.isRequired
+  },
+
+  getInitialState() {
+    return {
+      activeTabIndex: 0
+    };
+  },
+
+  handleTabClick(activeTabIndex) {
+    this.setState({ activeTabIndex });
+  },
+
   render() {
     return (
       <div>
         <h1>Props v. State</h1>
-        <Tabs ref="tabs" data={this.props.tabs}/>
+        <StatelessTabs ref="tabs"
+          data={this.props.tabs}
+          activeTabIndex={this.state.activeTabIndex}
+          onActivateTab={this.handleTabClick}
+        />
       </div>
     );
   }

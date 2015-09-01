@@ -9,6 +9,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 var React = require('react');
+var { arrayOf, shape, number, string } = React.PropTypes;
+
+var country = shape({
+  id: number.isRequired,
+  name: string,
+  description: string.isRequired
+});
+
+var tab = shape({
+  label: string.isRequired,
+  content: string.isRequired
+});
 
 var DATA = [
   { id: 1, name: 'USA', description: 'Land of the Free, Home of the brave' },
@@ -37,32 +49,69 @@ styles.panel = {
 };
 
 var Tabs = React.createClass({
+
+  propTypes: {
+    data: arrayOf(tab)
+  },
+
+  getInitialState() {
+    return {
+      activeTabIndex: 0
+    };
+  },
+
+  handleClick(index) {
+    this.setState({
+      activeTabIndex: index
+    })
+  },
+
   render () {
+    var tabDivs = this.props.data.map((tab, index) => {
+      var isActive = index === this.state.activeTabIndex;
+      return (
+        <div
+          className="Tab"
+          key={index}
+          style={isActive ? styles.activeTab : styles.tab}
+          onClick={() => this.handleClick(index)}
+        >
+          {tab.label}
+        </div>
+        );
+    });
+
     return (
       <div className="Tabs">
-        <div className="Tab" style={styles.tab}>
-          Inactive
-        </div>
-        <div className="Tab" style={styles.activeTab}>
-          Active
-        </div>
+        {tabDivs}
         <div className="TabPanels" style={styles.panel}>
-          Panel
+          {this.props.data[this.state.activeTabIndex].content}
         </div>
       </div>
     );
   }
+
 });
 
 var App = React.createClass({
+
+  propTypes: {
+    countries: arrayOf(country)
+  },
+
   render () {
+    var tabData = this.props.countries.map((country) => {
+      return { label: country.name, content: country.description };
+    });
+
     return (
       <div>
         <h1>Countries</h1>
-        <Tabs data={this.props.countries}/>
+        <Tabs data={tabData}/>
       </div>
     );
   }
+
 });
 
 React.render(<App countries={DATA}/>, document.getElementById('app'), function () {

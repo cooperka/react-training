@@ -23,18 +23,56 @@ var DATA = {
     { id: 1, name: 'tacos', type: 'mexican' },
     { id: 2, name: 'burrito', type: 'mexican' },
     { id: 3, name: 'tostada', type: 'mexican' },
-    { id: 4, name: 'hush puppies', type: 'southern' }
+    { id: 4, name: 'hush puppies', type: 'southern' },
+    { id: 5, name: 'catfish', type: 'southern' }
   ]
 };
 
+var filterType = 'mexican';
+var sortAsc = true;
+
+function changeFilter(event) {
+  filterType = event.target.value;
+  updateThePage();
+}
+
+function toggleSort() {
+  sortAsc = !sortAsc;
+  updateThePage();
+}
+
 function render() {
+  var filteredItems = DATA.items.filter((item) => (item.type === filterType));
+  var sortedItems = filteredItems.sort(sortBy(sortAsc ? 'name' : '-name'));
+  var listItems = sortedItems.map((item) => (
+    <li>{item.name}</li>
+  ));
+
+  var uniqueTypes = DATA.items.filter((item, index) => (true)); // TODO filter
+  var selectItems = uniqueTypes.map((item) => (
+    <option>{item.type}</option>
+  ));
+
   return (
     <div>
-      Open the console, you have failing tests
+      <h1>{DATA.title}</h1>
+      <select onChange={changeFilter}>
+        {selectItems}
+      </select>
+      <button onClick={toggleSort}>
+        Sort {sortAsc ? "^" : "v"}
+      </button>
+      <ul>
+        {listItems}
+      </ul>
     </div>
   );
 }
 
-React.render(render(), document.getElementById('app'), function () {
-  require('./tests').run(this);
-});
+function updateThePage() {
+  React.render(render(), document.getElementById('app'), function () {
+    require('./tests').run(this);
+  });
+}
+
+updateThePage();
