@@ -39,13 +39,13 @@ var List = React.createClass({
       <div>
         <h1>{this.props.name}</h1>
         <input onKeyPress={this.addItem} />
-        <ul>
+        <TransitionGroup component="ul">
           {this.state.items.map(item => (
-            <li key={item.id}>
+            <HeightFader component="li" key={item.id}>
               {item.label} <button onClick={() => this.removeItem(item)}>remove</button>
-            </li>
+            </HeightFader>
           ))}
-        </ul>
+        </TransitionGroup>
       </div>
     );
   }

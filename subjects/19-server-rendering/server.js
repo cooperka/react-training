@@ -3,7 +3,6 @@
 //
 // First, fire up the server:
 //
-// 1. `cd` into `subjects/19-server-rendering/`
 // 2. run `node_modules/.bin/babel-node subjects/19-server-rendering/server.js`
 //    from the root of this project
 // 3. open http://localhost:5000 (not the typical 8080)
@@ -42,7 +41,6 @@ function createPage(appHTML, data) {
       <title>My Universal App</title>
     </head>
     <body>
-
       <div id="app">${appHTML}</div>
       <script>var __DATA__ = ${JSON.stringify(data)};</script>
 
@@ -56,11 +54,11 @@ function createPage(appHTML, data) {
 var app = http.createServer(function(req, res) {
   // fetch data and render `App` here,
   // you'll use `fetchContacts`, `App`, and `createPage`
-  write(res, '[fill in with the react app]');
+  fetchContacts((contacts) => {
+    var markup = React.renderToString(<App contacts={contacts} />);
+    write(res, createPage(markup, contacts));
+  })
 });
-
-
 
 app.listen(5000);
 console.log('listening on port 5000');
-

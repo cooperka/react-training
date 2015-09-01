@@ -9,3 +9,6 @@
 var React = require('react');
 var App = require('./lib/App');
 
+document.querySelector('h1').innerHTML = 'HACKED!'; // TODO not working
+
+React.render(<App contacts={__DATA__} />, document.getElementById('app'));

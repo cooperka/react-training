@@ -1,5 +1,6 @@
 var assert = require('assert');
 var React = require('react/addons');
+var { click } = React.addons.TestUtils.Simulate;
 var Tabs = require('../Tabs');
 
 describe('when <Tabs> is rendered', function () {
@@ -28,25 +29,48 @@ describe('when <Tabs> is rendered', function () {
     React.unmountComponentAtNode(document.body);
   });
 
-  it('renders the USA tab');
+  it('renders the USA tab', function() {
+    assert(html.match(/USA/), 'render the USA tab');
+  });
 
-  it('renders the Brazil tab');
+  it('renders the Brazil tab', function() {
+    assert(html.match(/Brazil/), 'render the Brazil tab');
+  });
 
-  it('renders the Russia tab');
+  it('renders the Russia tab', function() {
+    assert(html.match(/Russia/), 'render the Russia tab');
+  });
 
-  it('activates the first tab');
+  it('activates the first tab', function() {
+    tabs[0].style.borderBottomColor !== borderFixture.style.borderBottomColor,
+    'first tab is inactive'
+  });
 
-  it('does not activate the second tab');
+  it('does not activate the second tab', function() {
+    tabs[1].style.borderBottomColor === borderFixture.style.borderBottomColor,
+    'second tab is active'
+  });
 
   describe('after clicking the third tab', function () {
     beforeEach(function () {
-      // TODO
+      click(tabs[2]);
     });
 
-    it('activates the third tab');
+    it('activates the third tab', function() {
+      tabs[2].style.borderBottomColor !== borderFixture.style.borderBottomColor,
+      'third tab is inactive'
+    });
 
-    it('deactivates the first tab');
+    it('deactivates the first tab', function() {
+      tabs[0].style.borderBottomColor === borderFixture.style.borderBottomColor,
+      'first tab is active'
+    });
 
-    it('puts the correct content in the panel');
+    it('puts the correct content in the panel', function() {
+      assert(
+        panel.textContent.trim() == 'World Cup 2018!',
+        'you have the wrong content in the panel'
+      );
+    });
   });
 });

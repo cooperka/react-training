@@ -9,7 +9,7 @@ module.exports = function (config) {
     reporters: [ 'dots' ],
 
     files: [
-      // TODO
+      'tests.webpack.js'
     ],
 
     preprocessors: {

@@ -56,10 +56,11 @@ var app = app || {};
 				this.$main.show();
 				this.$footer.show();
 
-				this.$footer.html(this.statsTemplate({
+				var el = React.createElement(Footer, {
 					completed: completed,
 					remaining: remaining
-				}));
+				});
+				React.render(el, this.$footer[0]);
 
 				this.$('#filters li a')
 					.removeClass('selected')

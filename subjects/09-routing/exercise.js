@@ -38,6 +38,7 @@ var App = React.createClass({
     return (
       <div>
         <h1>People Viewer</h1>
+        {this.props.children}
       </div>
     );
   }
@@ -48,13 +49,16 @@ var Home = React.createClass({
     var contactItems = USERS.map(function (user) {
       return (
         <li key={user.email}>
-          {user.name}
+          <Link to={"/profile/" + user.id}>{user.name}</Link>
         </li>
       );
     });
 
     return (
-      <ul className="people-list">{contactItems}</ul>
+      <div>
+        <ul className="people-list">{contactItems}</ul>
+        {this.props.children}
+      </div>
     );
   }
 });
@@ -70,15 +74,30 @@ var Profile = React.createClass({
     return (
       <div className="profile">
         <Gravatar email={user.email} /> {user.name}
+        {' '}<Link to="/">(Home)</Link>
       </div>
     );
   }
 });
 
+var Unknown = React.createClass({
+  render: function () {
+    return (
+      <div>
+        Unknown link!
+        {' '}<Link to="/">(Home)</Link>
+      </div>
+    );
+  }
+})
+
 React.render((
   <Router>
     <Route component={App}>
-      <Route path="/" component={Home} />
+      <Route path="/" component={Home} >
+        <Route path="profile/:userID" component={Profile} />
+      </Route>
+      <Route path="*" component={Unknown} />
     </Route>
   </Router>
 ), document.getElementById('app'), function () {

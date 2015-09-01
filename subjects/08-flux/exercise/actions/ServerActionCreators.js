@@ -7,6 +7,21 @@ var ServerActionCreators = {
       type: ActionTypes.CONTACTS_LOADED,
       contacts: contacts
     });
+  },
+
+  deletedContact: function (contact) {
+    AppDispatcher.handleServerAction({
+      type: ActionTypes.DELETED_CONTACT,
+      contact: contact
+    });
+  },
+
+  errorDeletingContact: function (contact, error) {
+    AppDispatcher.handleServerAction({
+      type: ActionTypes.ERROR_DELETING_CONTACT,
+      contact: contact,
+      error: error
+    })
   }
 };
 

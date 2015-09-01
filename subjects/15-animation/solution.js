@@ -2,7 +2,7 @@
 // Exercise:
 //
 // - Use TweenStateMixin to animate a sliding animation
-// - Experiment with different types of easing (hint: use easingTypes at 
+// - Experiment with different types of easing (hint: use easingTypes at
 //   https://github.com/chenglou/tween-functions/blob/master/index.js)
 //
 // Got more time?
@@ -54,7 +54,7 @@ var ToggleSwitch = React.createClass({
   handleClick() {
     this.toggle();
   },
-  
+
   render() {
     var knobStyle = {
       WebkitTransform: `translate3d(${this.getTweeningValue('knobLeft')}px,0,0)`,
@@ -87,10 +87,10 @@ var SpringToggleSwitch = React.createClass({
   handleClick() {
     this.toggle();
   },
-  
+
   render() {
     return (
-      <Spring endValue={{ val: this.state.isLeft ? 0 : 400 }}>
+      <Spring endValue={{ val: this.state.isLeft ? 0 : 400, config: [100, 10] }}>
         {({ val }) =>
           <div className="toggle-switch" onClick={this.handleClick}>
             <div className="toggle-switch-knob" style={{

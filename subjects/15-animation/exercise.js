@@ -2,7 +2,7 @@
 // Exercise:
 //
 // - Use TweenStateMixin to animate a sliding animation
-// - Experiment with different types of easing (hint: use easingTypes at 
+// - Experiment with different types of easing (hint: use easingTypes at
 //   https://github.com/chenglou/tween-functions/blob/master/index.js)
 //
 // Got more time?
@@ -21,6 +21,8 @@ require('./styles');
 
 var ToggleSwitch = React.createClass({
 
+  mixins: [ TweenStateMixin ],
+
   propTypes: {
     animationDuration: number
   },
@@ -38,21 +40,24 @@ var ToggleSwitch = React.createClass({
   },
 
   toggle() {
-    this.setState({
-      knobLeft: this.state.knobLeft === 0 ? 400 : 0
+    this.tweenState('knobLeft', {
+      duration: this.props.animationDuration,
+      endValue: this.state.knobLeft === 0 ? 400 : 0
     });
   },
 
   handleClick() {
     this.toggle();
   },
-  
+
   render() {
     var knobStyle = {
-      WebkitTransform: `translate3d(${this.state.knobLeft}px,0,0)`,
-      transform: `translate3d(${this.state.knobLeft}px,0,0)`
+      WebkitTransform: `translate3d(${this.getTweeningValue('knobLeft')}px,0,0)`,
+      transform: `translate3d(${this.getTweeningValue('knobLeft')}px,0,0)`
     };
 
+    // See ./solution.js for example using a Spring interpolator.
+    // Caveat with Spring: can't set exact duration (but that shouldn't affect much).
     return (
       <div className="toggle-switch" onClick={this.handleClick}>
         <div className="toggle-switch-knob" style={knobStyle} />
